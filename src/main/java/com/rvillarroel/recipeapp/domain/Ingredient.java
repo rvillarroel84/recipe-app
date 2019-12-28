@@ -18,6 +18,13 @@ public class Ingredient {
     @OneToOne(fetch = FetchType.EAGER) //retrive form de DataBase.
     private UnitOfMeasure unitOfMeasure;
 
+    public Ingredient() {
+    }
+
+    public Ingredient(Long id) {
+        this.id = id;
+    }
+
     public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
         this.description = description;
         this.amount = amount;

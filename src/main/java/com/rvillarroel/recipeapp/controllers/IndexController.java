@@ -39,5 +39,10 @@ public class IndexController {
         model.addAttribute("recipes", recipeService.getRecipes());
         return "index";
     }
+    @RequestMapping({"/recipe", "/recipe.html"})
+    public String getRecipe(Model model){
+        model.addAttribute("recipe", recipeService.getRecipe(1L));
+        return "recipe";
+    }
 
 }
