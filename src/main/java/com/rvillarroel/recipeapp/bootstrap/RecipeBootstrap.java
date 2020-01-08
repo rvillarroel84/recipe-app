@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import sun.applet.AppletEvent;
 import sun.applet.AppletListener;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,11 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         this.unitOfMeasureRepository = unitOfMeasureRepository;
     }
 
+    @Override
+    @Transactional
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+        recipeRepository.saveAll(getRecipes());
+    }
 
 
     private List<Recipe> getRecipes() {
@@ -203,8 +209,5 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         return recipes;
     }
 
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        recipeRepository.saveAll(getRecipes());
-    }
+
 }
