@@ -1,8 +1,10 @@
 package com.rvillarroel.recipeapp.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
-@lombok.Data
+@Data
 @Entity
 public class Notes {
     @Id

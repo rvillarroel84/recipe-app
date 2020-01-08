@@ -1,9 +1,11 @@
 package com.rvillarroel.recipeapp.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
-@lombok.Data
+@Data
 @Entity
 public class Category {
     @Id
