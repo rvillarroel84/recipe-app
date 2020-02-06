@@ -2,14 +2,13 @@ package com.rvillarroel.recipeapp.controllers;
 
 import com.rvillarroel.recipeapp.domain.Recipe;
 import com.rvillarroel.recipeapp.services.RecipeService;
+import com.rvillarroel.recipeapp.services.UnitOfMesureService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.verification.VerificationMode;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
@@ -25,6 +24,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class IndexControllerTest {
     @Mock
     RecipeService recipeService;
+
+    @Mock
+    UnitOfMesureService unitOfMesureService;
+
     @Mock
     Model model;
 
@@ -33,7 +36,7 @@ class IndexControllerTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        indexController = new IndexController(recipeService);
+        indexController = new IndexController(recipeService, unitOfMesureService);
 
     }
 
