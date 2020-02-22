@@ -5,6 +5,7 @@ import com.rvillarroel.recipeapp.services.UnitOfMesureService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
@@ -28,8 +29,13 @@ public class IndexController {
         log.debug("IndexController");
     }
 
+    @RequestMapping("/recipe/show/{id}")
+    public String ShowById(@PathVariable String id, Model model){
 
+        model.addAttribute("recipe", recipeService.findById(new Long(id)));
 
+        return "recipe/show";
+    }
 
     @RequestMapping({"", "/", "/index"})
     public String getIndexPage(Model model){
@@ -44,7 +50,7 @@ public class IndexController {
     }
     @RequestMapping({"/recipe", "/recipe.html"})
     public String getRecipe(Model model){
-        model.addAttribute("recipe", recipeService.getRecipe(1L));
+        model.addAttribute("recipe", recipeService.findById(1L));
         return "recipe";
     }
 
