@@ -1,4 +1,4 @@
-package com.rvillarroel.commands;
+package com.rvillarroel.recipeapp.commands;
 
 import com.rvillarroel.recipeapp.domain.Difficulty;
 import com.rvillarroel.recipeapp.domain.Ingredient;
