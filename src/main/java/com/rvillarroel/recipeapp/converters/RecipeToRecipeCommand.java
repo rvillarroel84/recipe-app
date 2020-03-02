@@ -2,6 +2,7 @@ package com.rvillarroel.recipeapp.converters;
 
 import com.rvillarroel.recipeapp.commands.RecipeCommand;
 import com.rvillarroel.recipeapp.domain.Category;
+import com.rvillarroel.recipeapp.domain.Ingredient;
 import com.rvillarroel.recipeapp.domain.Recipe;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
@@ -52,7 +53,7 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand>{
 
         if (source.getIngredients() != null && source.getIngredients().size() > 0){
             source.getIngredients()
-                    .forEach(ingredient -> command.getIngredients().add(ingredientConverter.convert(ingredient)));
+                    .forEach((Ingredient ingredient) -> command.getIngredients().add(ingredientConverter.convert(ingredient)));
         }
 
         return command;
