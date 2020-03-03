@@ -1,5 +1,6 @@
 package com.rvillarroel.recipeapp.services;
 
+import com.rvillarroel.recipeapp.commands.RecipeCommand;
 import com.rvillarroel.recipeapp.domain.Recipe;
 
 import java.util.Optional;
@@ -9,5 +10,5 @@ public interface RecipeService {
 
     Set<Recipe> getRecipes();
     Recipe findById(Long id);
-
+    RecipeCommand saveRecipeCommand(RecipeCommand command);
 }

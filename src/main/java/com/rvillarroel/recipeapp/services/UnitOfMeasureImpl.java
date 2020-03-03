@@ -18,6 +18,6 @@ public class UnitOfMeasureImpl implements UnitOfMesureService {
     @Override
     public Optional<UnitOfMeasure> findUOM(String uom) {
 
-        return unitOfMeasureRepository.findByUom(uom);
+        return unitOfMeasureRepository.findByDescription(uom);
     }
 }
