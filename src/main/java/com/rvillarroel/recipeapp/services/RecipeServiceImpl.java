@@ -48,6 +48,11 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public void deleteById(Long id) {
+        recipeRepository.deleteById(id);
+    }
+
+    @Override
     @Transactional
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
         //convierte command(Desacoplado de Hibernate) to Recipe
@@ -57,6 +62,12 @@ public class RecipeServiceImpl implements RecipeService {
         log.debug("Saved recipeId" + saveRecipe.getId());
         //retorna el Objeto guardado a Command
         return recipeToRecipeCommand.convert(saveRecipe);
+    }
+
+    @Override
+    public void deleteRecipeCommand(RecipeCommand command) {
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
+        recipeRepository.delete(detachedRecipe);
     }
 
 
