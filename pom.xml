@@ -43,6 +43,11 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>oracle</groupId>-->
+<!--            <artifactId>oracle-jdbc</artifactId>-->
+<!--            <version>12.1.0.2</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -69,6 +74,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
 
     <build>
         <plugins>
@@ -100,5 +106,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
