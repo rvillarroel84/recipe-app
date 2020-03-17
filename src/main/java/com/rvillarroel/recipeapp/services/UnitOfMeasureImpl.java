@@ -2,7 +2,7 @@ package com.rvillarroel.recipeapp.services;
 
 import com.rvillarroel.recipeapp.commands.UnitOfMeasureCommand;
 import com.rvillarroel.recipeapp.converters.UnitOfMeasureToUnitOfMeasureCommand;
-import com.rvillarroel.recipeapp.domain.UnitOfMeasure;
+import com.rvillarroel.recipeapp.domain.UnitOfMeasures;
 import com.rvillarroel.recipeapp.repositories.UnitOfMeasureRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class UnitOfMeasureImpl implements UnitOfMesureService {
     }
 
     @Override
-    public Optional<UnitOfMeasure> findUOM(String uom) {
+    public Optional<UnitOfMeasures> findUOM(String uom) {
 
         return unitOfMeasureRepository.findByDescription(uom);
     }
@@ -31,8 +31,8 @@ public class UnitOfMeasureImpl implements UnitOfMesureService {
     @Override
     public Set<UnitOfMeasureCommand> listAllUoms() {
 
-        return StreamSupport.stream(unitOfMeasureRepository.findAll()
-                .spliterator(), false)
+        return StreamSupport
+                .stream(unitOfMeasureRepository.findAll().spliterator(), false)
                 .map(unitOfMeasureToUnitOfMeasureCommand::convert)
                 .collect(Collectors.toSet());
     }

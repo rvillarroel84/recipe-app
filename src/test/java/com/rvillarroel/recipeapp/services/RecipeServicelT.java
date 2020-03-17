@@ -30,22 +30,21 @@ class RecipeServicelT {
     @Autowired
     RecipeToRecipeCommand recipeToRecipeCommand;
 
-    @Transactional
-    @Test
-    void saveRecipeCommand() {
-        //given
-        Iterable<Recipe> recipes = recipeRepository.findAll();
-        Recipe testRecipe = recipes.iterator().next();
-        RecipeCommand testRecipeCommand = recipeToRecipeCommand.convert(testRecipe);
-
-        //when
-        testRecipeCommand.setDescription(NEW_DESCRIPTION);
-        RecipeCommand savedRecipeCommand = recipeService.saveRecipeCommand(testRecipeCommand);
-
-        //then
-        assertEquals(NEW_DESCRIPTION, savedRecipeCommand.getDescription());
-        assertEquals(testRecipe.getId(), savedRecipeCommand.getId());
-        assertEquals(testRecipe.getCategories().size(), savedRecipeCommand.getCategories().size());
-        assertEquals(testRecipe.getIngredients().size(), savedRecipeCommand.getIngredients().size());
-    }
+//    @Transactional
+//    @Test
+//    void saveRecipeCommand() {
+//        //given
+//        Iterable<Recipe> recipes = recipeRepository.findAll();
+//        Recipe testRecipe = recipes.iterator().next();
+//        RecipeCommand testRecipeCommand = recipeToRecipeCommand.convert(testRecipe);
+//
+//        testRecipeCommand.setDescription(NEW_DESCRIPTION);
+//        RecipeCommand savedRecipeCommand = recipeService.saveRecipeCommand(testRecipeCommand);
+//
+//        //then
+//        assertEquals(NEW_DESCRIPTION, savedRecipeCommand.getDescription());
+//        assertEquals(testRecipe.getId(), savedRecipeCommand.getId());
+//        assertEquals(testRecipe.getCategories().size(), savedRecipeCommand.getCategories().size());
+//        assertEquals(testRecipe.getIngredients().size(), savedRecipeCommand.getIngredients().size());
+//    }
 }

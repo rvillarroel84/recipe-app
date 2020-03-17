@@ -2,7 +2,7 @@ package com.rvillarroel.recipeapp.services;
 
 import com.rvillarroel.recipeapp.commands.UnitOfMeasureCommand;
 import com.rvillarroel.recipeapp.converters.UnitOfMeasureToUnitOfMeasureCommand;
-import com.rvillarroel.recipeapp.domain.UnitOfMeasure;
+import com.rvillarroel.recipeapp.domain.UnitOfMeasures;
 import com.rvillarroel.recipeapp.repositories.UnitOfMeasureRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,12 +33,12 @@ class UnitOfMeasureImplTest {
     @Test
     void listAllUoms() throws Exception{
         //given
-        Set<UnitOfMeasure> unitOfMeasures = new HashSet<>();
-        UnitOfMeasure uom1 = new UnitOfMeasure();
+        Set<UnitOfMeasures> unitOfMeasures = new HashSet<>();
+        UnitOfMeasures uom1 = new UnitOfMeasures();
         uom1.setId(1L);
         unitOfMeasures.add(uom1);
 
-        UnitOfMeasure uom2 = new UnitOfMeasure();
+        UnitOfMeasures uom2 = new UnitOfMeasures();
         uom2.setId(2L);
         unitOfMeasures.add(uom2);
 
@@ -51,4 +51,5 @@ class UnitOfMeasureImplTest {
         assertEquals(2, commands.size());
         verify(unitOfMeasureRepository, times(1)).findAll();
     }
+
 }
