@@ -4,6 +4,7 @@ package com.rvillarroel.recipeapp.datasource;
 import com.sun.istack.NotNull;
 import oracle.jdbc.pool.OracleDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,6 +29,7 @@ public class OracleConfiguration {
     public void setUrl(String url) {
         this.url = url;
     }
+
     @Bean
     DataSource dataSource() throws SQLException {
         OracleDataSource dataSource = new OracleDataSource();
