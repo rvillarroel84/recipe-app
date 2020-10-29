@@ -32,11 +32,13 @@ class IndexControllerTest {
     Model model;
 
     IndexController indexController;
+    RecipeController recipeController;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
         indexController = new IndexController(recipeService, unitOfMesureService);
+        recipeController= new RecipeController(recipeService);
 
     }
 
@@ -56,11 +58,11 @@ class IndexControllerTest {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
 
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
 
         when(recipeService.findById(anyLong())).thenReturn(recipe);
 
-        mockMvc.perform(get("/recipe/show/1"))
+        mockMvc.perform(get("/recipe/1/show"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/show"));
     }

@@ -29,13 +29,6 @@ public class IndexController {
         log.debug("IndexController");
     }
 
-    @RequestMapping("/recipe/show/{id}")
-    public String ShowById(@PathVariable String id, Model model){
-
-        model.addAttribute("recipe", recipeService.findById(new Long(id)));
-
-        return "recipe/show";
-    }
 
     @RequestMapping({"", "/", "/index"})
     public String getIndexPage(Model model){

@@ -1,16 +1,15 @@
 package com.rvillarroel.recipeapp.services;
 
+import com.rvillarroel.recipeapp.converters.RecipeCommandToRecipe;
+import com.rvillarroel.recipeapp.converters.RecipeToRecipeCommand;
 import com.rvillarroel.recipeapp.domain.Recipe;
 import com.rvillarroel.recipeapp.repositories.RecipeRepository;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import javax.swing.text.html.Option;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -18,17 +17,20 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@DataJpaTest
 class RecipeServiceImplTest {
 
     RecipeServiceImpl recipeService;
     @Mock
     RecipeRepository recipeRepository;
+    RecipeCommandToRecipe recipeCommandToRecipe;
+    RecipeToRecipeCommand recipeToRecipeCommand;
 
     @BeforeEach
     public void setUp() throws Exception{
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
@@ -51,7 +53,7 @@ class RecipeServiceImplTest {
     @Test
     void getRecipes() {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl((recipeRepository));
+        recipeService = new RecipeServiceImpl((recipeRepository), recipeCommandToRecipe, recipeToRecipeCommand);
 
         Recipe recipe = new Recipe();
         HashSet recipesData = new HashSet();
@@ -62,5 +64,15 @@ class RecipeServiceImplTest {
         Set<Recipe> recipes = recipeService.getRecipes();
         assertEquals(recipes.size(), 1);
         verify(recipeRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void testDeleteById() throws Exception{
+        //given
+        Long idToDelete = Long.valueOf(2L);
+        //when
+        recipeService.deleteById(idToDelete);
+        //then
+        verify(recipeRepository, times(1)).deleteById(anyLong());
     }
 }

@@ -21,7 +21,7 @@ class UnitOfMeasureRepositoryIT {
     @Test
     void findByUom() {
 
-        Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByUom("Each");
+        Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByDescription("Each");
         assertEquals("Each", unitOfMeasure.get().getDescription());
     }
 }
