@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface RecipeService {
 
-    Set<Recipe> getRecipes();
+    Set<Recipe> getRecipes();//A Set is a colletion of elements that not repeat
     Recipe findById(Long id);
     void deleteById(Long id);
     RecipeCommand findCommandById(Long l);
